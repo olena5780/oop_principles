@@ -30,17 +30,19 @@ public class Animal {
 
     @Override
     public String toString() {
-        String result = "Animal{" +
+        return "Animal{" +
                 "name='" + name + '\'' +
-                ", age=" + age;
-
-        if(isCarnivore) result += ", isCarnivore=" + isCarnivore;
-        if(isHerbivore) result += ", isHerbivore=" + isHerbivore;
-        if(isOmnivore) result += ", isOmnivore=" + isOmnivore;
-
-        result += "}";
-
-        return result;
+                ", age=" + age +
+                ", isCarnivore=" + isCarnivore +
+                ", isHerbivore=" + isHerbivore +
+                ", isOmnivore=" + isOmnivore +
+                '}';
+    }
+// Execute the code below whenever an Animal object is garbage collected
+    //You will override finalize() method if you would like to execute a block right after you object is destroyed
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println(getClass().getName() + " " + this.name + " object is destroyed");
     }
 
     public static void main(String[] args) {
@@ -66,5 +68,7 @@ public class Animal {
 
         System.out.println(Animal.isExtinct); // false - if its static
         // but if it is public static final boolean Animal.isExtinct = true; // always true, it can not be change
+
+
     }
 }
